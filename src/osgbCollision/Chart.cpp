@@ -27,6 +27,7 @@
 #include <osg/Uniform>
 #include <osg/Shader>
 #include <osgDB/FileUtils>
+#include <osgDB/ReadFile>
 
 
 namespace osgbCollision
@@ -131,7 +132,7 @@ void Chart::createChart()
         std::string shaderName = osgDB::findDataFile( "hud.vs" );
         if( !shaderName.empty() )
         {
-            osg::ref_ptr< osg::Shader > vertShader = osg::Shader::readShaderFile( osg::Shader::VERTEX, shaderName );
+            osg::ref_ptr< osg::Shader > vertShader = osgDB::readRefShaderFile( osg::Shader::VERTEX, shaderName );
             program->addShader( vertShader.get() );
         }
         else
@@ -142,7 +143,7 @@ void Chart::createChart()
         shaderName = osgDB::findDataFile( "hud.fs" );
         if( !shaderName.empty() )
         {
-            osg::ref_ptr< osg::Shader > fragShader = osg::Shader::readShaderFile( osg::Shader::FRAGMENT, shaderName );
+            osg::ref_ptr< osg::Shader > fragShader = osgDB::readRefShaderFile( osg::Shader::FRAGMENT, shaderName );
             program->addShader( fragShader.get() );
         }
         else
